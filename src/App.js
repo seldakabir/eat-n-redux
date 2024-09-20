@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import FriendList from "./Components/FriendList";
+import Button from "./Components/Button";
+import "./index.css";
+import { useSelector } from "react-redux";
 
-function App() {
+export default function App() {
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const friends = useSelector((store) => store.friends);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="sidebar">
+        <FriendList
+          friends={friends}
+          selectedFriend={selectedFriend}
+          // selectedFriend={selectedFriend}
+          // onSelection={handleSelection}
+        />
+
+        {/* {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
+
+        <Button onClick={handleShowAddFriend}>
+          {showAddFriend ? "Close" : "Add friend"}
+        </Button>
+      </div> */}
+
+        {/* {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          onSplitBill={handleSplitBill}
+          key={selectedFriend.id}
+        />
+      )} */}
+        <Button>Add</Button>
+      </div>
     </div>
   );
 }
-
-export default App;
