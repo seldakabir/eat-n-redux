@@ -40,7 +40,10 @@ const eatSlice = createSlice({
       };
       state.push(newFriend);
     },
+    selectedFriend: (state, action) => {
+      return state.filter((friend) => friend.id === action.payload);
+    },
   },
 });
-export const { addFriend } = eatSlice.actions;
+export const { addFriend, selectedFriend } = eatSlice.actions;
 export default eatSlice.reducer;

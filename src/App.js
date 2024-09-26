@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import FriendList from "./Components/FriendList";
 import Button from "./Components/Button";
+import FormAddFriend from "./Components/FormAddFriend";
+
 import "./index.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedFriend } from "./eatSliceReducer";
+import Friend from "./Components/Friend";
 
 export default function App() {
-  const [selectedFriend, setSelectedFriend] = useState(null);
-  const friends = useSelector((store) => store.friends);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  function handleShowAddFriend() {
+    setShowAddFriend((show) => !show);
+  }
   return (
     <div className="app">
       <div className="sidebar">
         <FriendList
-          friends={friends}
-          selectedFriend={selectedFriend}
-          // selectedFriend={selectedFriend}
-          // onSelection={handleSelection}
+
+        // selectedFriend={selectedFriend}
+        // onSelection={handleSelection}
         />
 
         {/* {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
@@ -31,7 +36,10 @@ export default function App() {
           key={selectedFriend.id}
         />
       )} */}
-        <Button>Add</Button>
+        {showAddFriend && <FormAddFriend />}
+        <Button onClick={handleShowAddFriend}>
+          {showAddFriend ? "close" : "add"}
+        </Button>
       </div>
     </div>
   );
