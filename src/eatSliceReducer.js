@@ -25,20 +25,22 @@ const eatSlice = createSlice({
   initialState: initialFriends,
   reducers: {
     addFriend: {
-      prepare(name, image, balance) {
+      prepare(name, image, balance = 0) {
+        const id = crypto.randomUUID();
         return {
-          payload: { name, image, balance },
+          payload: { id, name, image, balance },
         };
       },
-    },
-    reducer(state, action) {
-      const newFriend = {
-        id: Date.now(),
-        name: action.payload.name,
-        image: action.payload.image,
-        balance: action.payload.balance,
-      };
-      state.push(newFriend);
+
+      reducer(state, action) {
+        const newFriend = {
+          id: crypto.randomUUID(),
+          name: action.payload.name,
+          image: action.payload.image,
+          balance: action.payload.balance,
+        };
+        state.push(newFriend);
+      },
     },
     selectedFriend: (state, action) => {
       return state.filter((friend) => friend.id === action.payload);
