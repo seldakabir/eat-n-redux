@@ -167,3 +167,16 @@ form h2 {
   letter-spacing: -0.5px;
   margin-bottom: 1.6rem;
 }
+.nextt {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 85rem;
+}
+.sel {
+  width: 40rem;
+}
+.split {
+  flex-grow: 10;
+}

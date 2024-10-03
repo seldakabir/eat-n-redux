@@ -1,10 +1,11 @@
 import React from "react";
 import "../index.css";
 import Friend from "./Friend";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedFriend } from "../eatSliceReducer";
 
 export default function FriendList() {
-  const friends = useSelector((store) => store.friends);
+  const friends = useSelector((store) => store.eat.friends);
 
   return (
     <ul>
@@ -12,7 +13,6 @@ export default function FriendList() {
         <Friend
           friend={friend}
           key={friend.id}
-          //   selectedFriend={selectedFriend}
           //   onSelection={onSelection}
         />
       ))}
